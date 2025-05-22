@@ -59,6 +59,16 @@ app_setup(){
      unzip /tmp/$app_name.zip &>>$logfile
      VALIDATE $? "unziping $app_name folder"
 }
+maven_setup(){
+    dnf install maven -y &>>$logfile
+    VALIDATE $? "installing maven and java"
+
+    mvn clean package &>>$logfile
+    VALIDATE $? "packaging the shipping application"
+
+    mv target/shipping-1.0.jar shipping.jar &>>$logfile
+    VALIDATE $? "moving and renaming jar file"
+}
 nodejs_setup(){
     dnf module disable nodejs -y &>>$logfile
     VALIDATE $? "disabling nodejs"
