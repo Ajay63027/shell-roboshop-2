@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./common.sh
-app_name=payments
+app_name=payment
 check_root
 
 dnf install python3 gcc python3-devel -y &>>$logfile
